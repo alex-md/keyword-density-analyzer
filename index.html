@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Keyword Density Analyzer - Advanced SEO Text Analysis Tool</title>
+    <meta name="description" content="Analyze keyword density, find intersection clusters, and optimize your content with our advanced SEO text analysis tool. Features multiple matching strategies and visual results.">
+    <meta name="keywords" content="keyword density, seo tool, text analysis, keyword intersection, content optimization">
+    <meta name="author" content="Your Name">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://keyword-analyzer.pages.dev/">
+    <meta property="og:title" content="Keyword Density Analyzer - Advanced SEO Text Analysis Tool">
+    <meta property="og:description" content="Analyze keyword density, find intersection clusters, and optimize your content with our advanced SEO text analysis tool.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://keyword-analyzer.pages.dev/">
+    <meta property="twitter:title" content="Keyword Density Analyzer - Advanced SEO Text Analysis Tool">
+    <meta property="twitter:description" content="Analyze keyword density, find intersection clusters, and optimize your content with our advanced SEO text analysis tool.">
+
+    <link rel="manifest" href="./site.webmanifest">
+    
+    <!-- Dependencies -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- Verify React Loading -->
+    <script>
+        window.addEventListener('load', function() {
+            if (!window.React || !window.ReactDOM) {
+                console.error('React or ReactDOM not loaded');
+                document.getElementById('root').innerHTML = `
+                    <div class="min-h-screen flex items-center justify-center p-4">
+                        <div class="error-message">
+                            <h2 class="font-bold mb-2">Error Loading Dependencies</h2>
+                            <p>React libraries failed to load. Please check your internet connection and try again.</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                console.log('React version:', React.version);
+                console.log('ReactDOM version:', ReactDOM.version);
+            }
+        });
+    </script>
+
+    <!-- Production-ready Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Error Handling -->
+    <script>
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'SCRIPT') {
+                console.warn('Script loading error:', e.target.src);
+            }
+        }, true);
+    </script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'slide-in': 'slideIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                    },
+                    typography: {
+                        DEFAULT: {
+                            css: {
+                                maxWidth: 'none',
+                                color: '#334155',
+                                p: {
+                                    marginBottom: '1.5rem',
+                                    lineHeight: '1.75',
+                                },
+                                mark: {
+                                    padding: '0.2em 0.4em',
+                                    borderRadius: '0.25rem',
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .hover-lift {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        mark {
+            transition: background-color 0.3s ease;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Form element styles */
+        input, select, textarea {
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Loading state animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Error state styles */
+        .error-message {
+            background-color: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #b91c1c;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans antialiased text-gray-900">
+    <div id="root">
+        <!-- Loading State -->
+        <div class="min-h-screen flex items-center justify-center">
+            <div class="text-center">
+                <div class="animate-pulse text-primary-500 text-4xl mb-4">⚡</div>
+                <p class="text-gray-600">Loading Keyword Analyzer...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Application Scripts -->
+    <script>
+        // Error handling for script loading
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => {
+                    console.log(`Loaded: ${src}`);
+                    resolve();
+                };
+                script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+                document.body.appendChild(script);
+            });
+        }
+
+        // Load scripts in sequence
+        async function loadApplicationScripts() {
+            try {
+                // First ensure React and ReactDOM are available
+                if (!window.React || !window.ReactDOM) {
+                    throw new Error('React or ReactDOM not loaded');
+                }
+
+                // Load utils first since other components depend on it
+                await loadScript('./src/utils/utils.js');
+                
+                // Load app.js to get ErrorBoundary and App components
+                await loadScript('./src/app.js');
+                
+                // Then load components in sequence
+                await Promise.all([
+                    loadScript('./src/components/KeywordInput.js'),
+                    loadScript('./src/components/FileUpload.js'),
+                    loadScript('./src/components/ResultsDisplay.js'),
+                    loadScript('./src/components/HighestDensityClusterDisplay.js')
+                ]);
+
+                // Initialize the app
+                const root = document.getElementById('root');
+                if (!root) {
+                    throw new Error('Root element not found');
+                }
+
+                const { createElement: h } = React;
+                const { createRoot } = ReactDOM;
+                
+                // Verify App exists
+                if (typeof App !== 'function') {
+                    throw new Error('App component not loaded');
+                }
+                
+                const appRoot = createRoot(root);
+                appRoot.render(h(ErrorBoundary, null, h(App)));
+
+            } catch (error) {
+                console.error('Error loading application scripts:', error);
+                document.getElementById('root').innerHTML = `
+                    <div class="min-h-screen flex items-center justify-center p-4">
+                        <div class="error-message">
+                            <h2 class="font-bold mb-2">Error Loading Application</h2>
+                            <p>Please try refreshing the page. If the problem persists, contact support.</p>
+                            <p class="text-sm mt-2">Error: ${error.message}</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Global error handler
+        window.addEventListener('error', function(event) {
+            console.error('Global error:', event.error);
+        });
+
+        // Start loading scripts when DOM is ready
+        document.addEventListener('DOMContentLoaded', loadApplicationScripts);
+    </script>
+
+</body>
+</html> 
